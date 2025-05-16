@@ -4,11 +4,11 @@ import io.github.lightman314.lightmanscompat.LCompat;
 import io.github.lightman314.lightmanscompat.datagen.client.language.EnglishProvider;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.data.PackOutput;
-import net.neoforged.bus.api.SubscribeEvent;
-import net.neoforged.fml.common.EventBusSubscriber;
-import net.neoforged.neoforge.data.event.GatherDataEvent;
+import net.minecraftforge.data.event.GatherDataEvent;
+import net.minecraftforge.eventbus.api.SubscribeEvent;
+import net.minecraftforge.fml.common.Mod;
 
-@EventBusSubscriber(bus = EventBusSubscriber.Bus.MOD, modid = LCompat.MODID)
+@Mod.EventBusSubscriber(bus = Mod.EventBusSubscriber.Bus.MOD, modid = LCompat.MODID)
 public class LCompDataEventListener {
 
     @SubscribeEvent
