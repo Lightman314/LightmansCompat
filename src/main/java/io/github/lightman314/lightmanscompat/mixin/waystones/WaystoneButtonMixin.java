@@ -1,6 +1,7 @@
 package io.github.lightman314.lightmanscompat.mixin.waystones;
 
 import io.github.lightman314.lightmanscompat.waystones.WaystonesNode;
+import io.github.lightman314.lightmanscompat.waystones.WaystonesText;
 import io.github.lightman314.lightmanscurrency.LightmansCurrency;
 import io.github.lightman314.lightmanscurrency.api.capability.money.IMoneyHandler;
 import io.github.lightman314.lightmanscurrency.api.misc.client.rendering.EasyGuiGraphics;
@@ -13,6 +14,7 @@ import net.blay09.mods.waystones.client.gui.widget.WaystoneButton;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.components.Button;
+import net.minecraft.network.chat.Component;
 import net.minecraft.world.entity.player.Player;
 import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
@@ -23,6 +25,7 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 import java.util.ArrayList;
+import java.util.List;
 
 @Mixin(WaystoneButton.class)
 public class WaystoneButtonMixin {
@@ -66,12 +69,19 @@ public class WaystoneButtonMixin {
         if(this.lightmansCompat$price.isEmpty())
             return;
         //Render money price
+        WaystoneButton self = this.lightmansCompat$self();
         EasyGuiGraphics gui = EasyGuiGraphics.create(mcgui,mouseX,mouseY,partialTicks);
-        gui.pushOffset(this.lightmansCompat$self());
+        gui.pushOffset(self);
         DisplayEntry entry = this.lightmansCompat$price.getDisplayEntry(new ArrayList<>(),true);
         //Offset to avoid drawing over the XP cost if one is defined
         int xOffset = this.xpLevelCost > 0 ? 16 : 0;
         entry.render(gui,xOffset + 2,2,new DisplayData(0,0,32,16));
+
+        if(self.isHovered() && mouseX >= self.getX() + xOffset && mouseX <= self.getX() + xOffset + 32)
+        {
+            gui.resetColor();
+            gui.renderTooltip(WaystonesText.TOOLTIP_WAYSTONE_MONEY_COST.get(this.lightmansCompat$price.getText()));
+        }
     }
 
 }
