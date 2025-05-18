@@ -46,7 +46,7 @@ public final class WaystonesConfig extends SyncedConfigFile {
                 .add("crossDimensionWarpCost",this.dimensionalWarpPrice);
 
         builder.comment("The warp cost scale when warping using a Warp Plate")
-                .add("warpPlaceCostScale",this.warpPlatePriceScale);
+                .add("warpPlateCostScale",this.warpPlatePriceScale);
 
         builder.comment("The warp cost scale when warping to a Global Waystone")
                 .add("globalWaystoneCostScale",this.globalCostScale);
