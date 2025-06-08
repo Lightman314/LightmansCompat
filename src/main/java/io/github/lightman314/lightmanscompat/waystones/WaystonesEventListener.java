@@ -5,6 +5,7 @@ import io.github.lightman314.lightmanscurrency.api.money.MoneyAPI;
 import io.github.lightman314.lightmanscurrency.api.money.value.MoneyValue;
 import net.blay09.mods.waystones.api.IWaystone;
 import net.blay09.mods.waystones.api.WaystoneTeleportEvent;
+import net.blay09.mods.waystones.core.WarpMode;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraftforge.event.TickEvent;
@@ -26,7 +27,9 @@ public final class WaystonesEventListener {
         if(entity instanceof Player player && !player.getAbilities().instabuild)
         {
             IWaystone target = event.getContext().getTargetWaystone();
-            MoneyValue price = WaystonesNode.calculatePrice(player,target);
+            WarpMode mode = event.getContext().getWarpMode();
+            int leashed = event.getContext().getLeashedEntities().size();
+            MoneyValue price = WaystonesNode.calculatePrice(player,target,mode,leashed);
             if(price.isEmpty())
                 return;
             IMoneyHandler moneyHandler = MoneyAPI.API.GetPlayersMoneyHandler(player);
@@ -50,7 +53,7 @@ public final class WaystonesEventListener {
                         player.getName().getString(),
                         event.getContext().getTargetWaystone().getName());
             }
-            MoneyValue price = WaystonesNode.calculatePrice(event.getContext().getTargetWaystone(),distanceData);
+            MoneyValue price = WaystonesNode.calculatePrice(event.getContext().getTargetWaystone(),event.getContext().getWarpMode(),event.getContext().getLeashedEntities().size(),distanceData);
             if(price.isEmpty())
                 return;
             IMoneyHandler moneyHandler = MoneyAPI.API.GetPlayersMoneyHandler(player);

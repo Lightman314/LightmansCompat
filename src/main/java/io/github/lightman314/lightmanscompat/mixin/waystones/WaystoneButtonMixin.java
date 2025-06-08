@@ -2,7 +2,6 @@ package io.github.lightman314.lightmanscompat.mixin.waystones;
 
 import io.github.lightman314.lightmanscompat.waystones.WaystonesNode;
 import io.github.lightman314.lightmanscompat.waystones.WaystonesText;
-import io.github.lightman314.lightmanscurrency.LightmansCurrency;
 import io.github.lightman314.lightmanscurrency.api.capability.money.IMoneyHandler;
 import io.github.lightman314.lightmanscurrency.api.misc.client.rendering.EasyGuiGraphics;
 import io.github.lightman314.lightmanscurrency.api.money.MoneyAPI;
@@ -10,11 +9,14 @@ import io.github.lightman314.lightmanscurrency.api.money.value.MoneyValue;
 import io.github.lightman314.lightmanscurrency.client.gui.widget.button.trade.DisplayData;
 import io.github.lightman314.lightmanscurrency.client.gui.widget.button.trade.DisplayEntry;
 import net.blay09.mods.waystones.api.IWaystone;
+import net.blay09.mods.waystones.client.gui.screen.WaystoneSelectionScreenBase;
 import net.blay09.mods.waystones.client.gui.widget.WaystoneButton;
+import net.blay09.mods.waystones.core.PlayerWaystoneManager;
+import net.blay09.mods.waystones.core.WarpMode;
+import net.blay09.mods.waystones.menu.WaystoneSelectionMenu;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.components.Button;
-import net.minecraft.network.chat.Component;
 import net.minecraft.world.entity.player.Player;
 import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
@@ -25,7 +27,6 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 import java.util.ArrayList;
-import java.util.List;
 
 @Mixin(WaystoneButton.class)
 public class WaystoneButtonMixin {
@@ -50,7 +51,19 @@ public class WaystoneButtonMixin {
             this.lightmansCompat$price = MoneyValue.empty();
             return;
         }
-        this.lightmansCompat$price = WaystonesNode.calculatePrice(player,this.waystone);
+        //Get the warp mode from the screen
+        WarpMode mode = WarpMode.CUSTOM;
+        if(Minecraft.getInstance().screen instanceof WaystoneSelectionScreenBase screen)
+            mode = screen.getMenu().getWarpMode();
+        else if(Minecraft.getInstance().player.containerMenu instanceof WaystoneSelectionMenu menu) //Backup method to obtain from the menu
+            mode = menu.getWarpMode();
+        else
+            WaystonesNode.LOGGER.warn("Waystone button created from a non-waystone screen. May be unable to calculate the price accurately!");
+
+        //Get the players leashed animals
+        int leashed = PlayerWaystoneManager.findLeashedAnimals(Minecraft.getInstance().player).size();
+
+        this.lightmansCompat$price = WaystonesNode.calculatePrice(player,this.waystone,mode,leashed);
         //Don't bother checking the players money if already inactive, player is creative, or if the price is empty
         if(this.lightmansCompat$price.isEmpty() || player.getAbilities().instabuild || !this.lightmansCompat$self().active)
             return;
