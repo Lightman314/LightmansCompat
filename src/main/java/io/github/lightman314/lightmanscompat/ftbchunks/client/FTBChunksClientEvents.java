@@ -1,11 +1,11 @@
-package io.github.lightman314.lightmanscompat.ftbchunks.core;
+package io.github.lightman314.lightmanscompat.ftbchunks.client;
 
 import io.github.lightman314.lightmanscompat.ftbchunks.claim_shop.trader.client.menu.trader_storage.ClaimMapClientTab;
 import io.github.lightman314.lightmanscurrency.client.gui.screen.inventory.TraderStorageScreen;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.neoforge.client.event.ScreenEvent;
 
-public class FTBChunksClientEvent {
+public class FTBChunksClientEvents {
 
     @SubscribeEvent
     public static void onScreenClosed(ScreenEvent.Closing event)

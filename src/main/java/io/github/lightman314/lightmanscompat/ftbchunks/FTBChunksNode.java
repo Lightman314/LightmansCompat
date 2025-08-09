@@ -3,9 +3,10 @@ package io.github.lightman314.lightmanscompat.ftbchunks;
 import io.github.lightman314.lightmanscompat.api.claimshop.ClaimGroupData;
 import io.github.lightman314.lightmanscompat.ftbchunks.claim_shop.notifications.*;
 import io.github.lightman314.lightmanscompat.ftbchunks.claim_shop.trader.ClaimShopData;
+import io.github.lightman314.lightmanscompat.ftbchunks.client.FTBChunksClientEvents;
 import io.github.lightman314.lightmanscompat.ftbchunks.core.FTBChunksBlockEntities;
 import io.github.lightman314.lightmanscompat.ftbchunks.core.FTBChunksBlocks;
-import io.github.lightman314.lightmanscompat.ftbchunks.core.FTBChunksClientModEvents;
+import io.github.lightman314.lightmanscompat.ftbchunks.client.FTBChunksClientModEvents;
 import io.github.lightman314.lightmanscompat.ftbchunks.core.FTBChunksMenus;
 import io.github.lightman314.lightmanscompat.ftbchunks.packets.*;
 import io.github.lightman314.lightmanscompat.ftbchunks.util.ClaimInteractionHandler;
@@ -16,6 +17,7 @@ import io.github.lightman314.lightmanscurrency.api.notifications.NotificationAPI
 import io.github.lightman314.lightmanscurrency.api.traders.TraderAPI;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.fml.event.lifecycle.FMLCommonSetupEvent;
+import net.neoforged.neoforge.common.NeoForge;
 import net.neoforged.neoforge.event.BuildCreativeModeTabContentsEvent;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -40,7 +42,10 @@ public class FTBChunksNode {
         ClaimGroupData.init();
 
         if(isClient)
+        {
+            NeoForge.EVENT_BUS.register(FTBChunksClientEvents.class);
             bus.register(FTBChunksClientModEvents.class);
+        }
 
         //Register Packets
         LCompatPacketHandler.registerNode(FTBChunksNode::registerPackets);

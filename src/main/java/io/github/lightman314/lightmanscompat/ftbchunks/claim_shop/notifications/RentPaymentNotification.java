@@ -74,7 +74,7 @@ public class RentPaymentNotification extends TaxableNotification {
         this.player = PlayerReference.load(tag.getCompound("Player"));
         this.price = MoneyValue.load(tag.getCompound("Price"));
         this.timeRemaining = tag.getLong("TimeRemaining");
-        this.category = new TraderCategory(tag,lookup);
+        this.category = new TraderCategory(tag.getCompound("Trader"),lookup);
 
     }
 

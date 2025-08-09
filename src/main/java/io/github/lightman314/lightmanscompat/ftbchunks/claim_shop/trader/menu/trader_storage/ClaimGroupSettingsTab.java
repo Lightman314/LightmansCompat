@@ -8,6 +8,8 @@ import io.github.lightman314.lightmanscurrency.api.traders.menu.storage.TraderSt
 import io.github.lightman314.lightmanscurrency.common.traders.permissions.Permissions;
 import net.minecraft.MethodsReturnNonnullByDefault;
 import net.minecraft.world.entity.player.Player;
+import net.neoforged.api.distmarker.Dist;
+import net.neoforged.api.distmarker.OnlyIn;
 
 import javax.annotation.Nonnull;
 import javax.annotation.ParametersAreNonnullByDefault;
@@ -19,6 +21,7 @@ public class ClaimGroupSettingsTab extends TraderStorageTab {
     public ClaimGroupSettingsTab(@Nonnull ITraderStorageMenu menu) { super(menu); }
 
     @Override
+    @OnlyIn(Dist.CLIENT)
     public Object createClientTab(Object screen) { return new ClaimGroupSettingsClientTab(screen,this); }
     @Override
     public boolean canOpen(Player player) { return this.menu.hasPermission(Permissions.EDIT_SETTINGS); }

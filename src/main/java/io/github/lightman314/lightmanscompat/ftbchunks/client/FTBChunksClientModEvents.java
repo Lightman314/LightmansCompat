@@ -1,7 +1,8 @@
-package io.github.lightman314.lightmanscompat.ftbchunks.core;
+package io.github.lightman314.lightmanscompat.ftbchunks.client;
 
 import io.github.lightman314.lightmanscompat.ftbchunks.claim_shop.trader.client.menu.shop.ClaimShopMenuScreen;
 import io.github.lightman314.lightmanscompat.ftbchunks.claim_shop.trader.menu.shop.ClaimShopMenu;
+import io.github.lightman314.lightmanscompat.ftbchunks.core.FTBChunksMenus;
 import net.minecraft.client.gui.screens.MenuScreens;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.neoforge.client.event.RegisterMenuScreensEvent;
