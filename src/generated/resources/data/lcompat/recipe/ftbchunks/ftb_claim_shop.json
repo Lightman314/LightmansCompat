@@ -1,0 +1,30 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "neoforge:mod_loaded",
+      "modid": "ftbchunks"
+    }
+  ],
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "e": {
+      "tag": "c:ender_pearls"
+    },
+    "i": {
+      "tag": "c:ingots/iron"
+    },
+    "p": {
+      "item": "lightmanscurrency:paygate"
+    }
+  },
+  "pattern": [
+    "iei",
+    "epe",
+    "iei"
+  ],
+  "result": {
+    "count": 1,
+    "id": "lcompat:ftb_claim_shop"
+  }
+}

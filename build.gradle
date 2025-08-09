@@ -88,18 +88,31 @@ configurations {
 repositories {
     mavenLocal()
     maven {
-        // location of the maven that hosts JEI files since January 2023
-        name = "Jared's maven"
-        url = "https://maven.blamejared.com/"
+        url "https://maven.architectury.dev/"
+        content {
+            includeGroup "dev.architectury"
+        }
     }
-    maven {
-        // location of a maven mirror for JEI files, as a fallback
-        name = "ModMaven"
-        url = "https://modmaven.dev"
+    exclusiveContent {
+        forRepository {
+            maven {
+                url "https://cursemaven.com"
+            }
+        }
+        filter {
+            includeGroup "curse.maven"
+        }
     }
-    maven {
-        name = "Modrinth"
-        url = "https://api.modrinth.com/maven"
+    exclusiveContent {
+        forRepository {
+            maven {
+                name = "Modrinth"
+                url = "https://api.modrinth.com/maven"
+            }
+        }
+        filter {
+            includeGroup "maven.modrinth"
+        }
     }
 }
 
@@ -113,7 +126,7 @@ dependencies {
     implementation "net.neoforged:neoforge:${neo_version}"
 
     //JEI
-    localRuntime "mezz.jei:jei-${minecraft_version}-neoforge:${jei_version}"
+    implementation "maven.modrinth:jei:3dgEkJue"
 
     //Lightman's Currency (obviously)
     implementation "maven.modrinth:lightmans-currency:${lightmanscurrency_version}"
@@ -121,6 +134,13 @@ dependencies {
     //Waystones
     implementation "maven.modrinth:waystones:21.1.18+neoforge-1.21.1"
     implementation "maven.modrinth:balm:21.0.44+neoforge-1.21.1"
+
+    //FTB Chunks
+    implementation "curse.maven:ftbchunks-314906:6504893"
+    implementation "curse.maven:ftblibrary-404465:6711324"
+    implementation "curse.maven:ftbteams-404468:6119437"
+
+    implementation "dev.architectury:architectury-neoforge:13.0.6"
 
 }
 
