@@ -1,0 +1,79 @@
+{
+  "variants": {
+    "claim_state=for_rent,facing=east": {
+      "model": "lcompat:block/ftb_claim_shop/for_rent",
+      "y": 90
+    },
+    "claim_state=for_rent,facing=north": {
+      "model": "lcompat:block/ftb_claim_shop/for_rent"
+    },
+    "claim_state=for_rent,facing=south": {
+      "model": "lcompat:block/ftb_claim_shop/for_rent",
+      "y": 180
+    },
+    "claim_state=for_rent,facing=west": {
+      "model": "lcompat:block/ftb_claim_shop/for_rent",
+      "y": 270
+    },
+    "claim_state=for_sale,facing=east": {
+      "model": "lcompat:block/ftb_claim_shop/for_sale",
+      "y": 90
+    },
+    "claim_state=for_sale,facing=north": {
+      "model": "lcompat:block/ftb_claim_shop/for_sale"
+    },
+    "claim_state=for_sale,facing=south": {
+      "model": "lcompat:block/ftb_claim_shop/for_sale",
+      "y": 180
+    },
+    "claim_state=for_sale,facing=west": {
+      "model": "lcompat:block/ftb_claim_shop/for_sale",
+      "y": 270
+    },
+    "claim_state=inactive,facing=east": {
+      "model": "lcompat:block/ftb_claim_shop/inactive",
+      "y": 90
+    },
+    "claim_state=inactive,facing=north": {
+      "model": "lcompat:block/ftb_claim_shop/inactive"
+    },
+    "claim_state=inactive,facing=south": {
+      "model": "lcompat:block/ftb_claim_shop/inactive",
+      "y": 180
+    },
+    "claim_state=inactive,facing=west": {
+      "model": "lcompat:block/ftb_claim_shop/inactive",
+      "y": 270
+    },
+    "claim_state=rented,facing=east": {
+      "model": "lcompat:block/ftb_claim_shop/rented",
+      "y": 90
+    },
+    "claim_state=rented,facing=north": {
+      "model": "lcompat:block/ftb_claim_shop/rented"
+    },
+    "claim_state=rented,facing=south": {
+      "model": "lcompat:block/ftb_claim_shop/rented",
+      "y": 180
+    },
+    "claim_state=rented,facing=west": {
+      "model": "lcompat:block/ftb_claim_shop/rented",
+      "y": 270
+    },
+    "claim_state=sold,facing=east": {
+      "model": "lcompat:block/ftb_claim_shop/sold",
+      "y": 90
+    },
+    "claim_state=sold,facing=north": {
+      "model": "lcompat:block/ftb_claim_shop/sold"
+    },
+    "claim_state=sold,facing=south": {
+      "model": "lcompat:block/ftb_claim_shop/sold",
+      "y": 180
+    },
+    "claim_state=sold,facing=west": {
+      "model": "lcompat:block/ftb_claim_shop/sold",
+      "y": 270
+    }
+  }
+}

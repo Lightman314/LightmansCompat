@@ -1,0 +1,37 @@
+{
+  "type": "forge:conditional",
+  "recipes": [
+    {
+      "conditions": [
+        {
+          "type": "forge:mod_loaded",
+          "modid": "ftbchunks"
+        }
+      ],
+      "recipe": {
+        "type": "minecraft:crafting_shaped",
+        "category": "misc",
+        "key": {
+          "e": {
+            "tag": "forge:ender_pearls"
+          },
+          "i": {
+            "tag": "forge:ingots/iron"
+          },
+          "p": {
+            "item": "lightmanscurrency:paygate"
+          }
+        },
+        "pattern": [
+          "iei",
+          "epe",
+          "iei"
+        ],
+        "result": {
+          "item": "lcompat:ftb_claim_shop"
+        },
+        "show_notification": true
+      }
+    }
+  ]
+}
