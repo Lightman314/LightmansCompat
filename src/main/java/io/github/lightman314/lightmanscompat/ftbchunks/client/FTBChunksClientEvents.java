@@ -1,8 +1,10 @@
 package io.github.lightman314.lightmanscompat.ftbchunks.client;
 
+import io.github.lightman314.lightmanscompat.api.claimshop.ClaimGroupData;
 import io.github.lightman314.lightmanscompat.ftbchunks.claim_shop.trader.client.menu.trader_storage.ClaimMapClientTab;
 import io.github.lightman314.lightmanscurrency.client.gui.screen.inventory.TraderStorageScreen;
 import net.neoforged.bus.api.SubscribeEvent;
+import net.neoforged.neoforge.client.event.ClientPlayerNetworkEvent;
 import net.neoforged.neoforge.client.event.ScreenEvent;
 
 public class FTBChunksClientEvents {
@@ -14,5 +16,7 @@ public class FTBChunksClientEvents {
         if(event.getScreen() instanceof TraderStorageScreen screen && screen.currentTab() instanceof ClaimMapClientTab tab)
             tab.onClose();
     }
+    @SubscribeEvent
+    public static void onClientDisconnect(ClientPlayerNetworkEvent.LoggingOut event) { ClaimGroupData.clearClientCache(); }
 
 }

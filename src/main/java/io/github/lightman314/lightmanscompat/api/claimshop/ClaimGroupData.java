@@ -5,7 +5,6 @@ import io.github.lightman314.lightmanscurrency.api.misc.player.PlayerReference;
 import io.github.lightman314.lightmanscurrency.api.traders.TraderAPI;
 import io.github.lightman314.lightmanscurrency.api.traders.TraderData;
 import net.neoforged.bus.api.SubscribeEvent;
-import net.neoforged.neoforge.client.event.ClientPlayerNetworkEvent;
 import net.neoforged.neoforge.common.NeoForge;
 import net.neoforged.neoforge.event.server.ServerStoppedEvent;
 
@@ -83,10 +82,9 @@ public class ClaimGroupData {
         return count;
     }
 
+    public static void clearClientCache() { clientCache.clear(); }
     //Stop events to clear the cache's when relevant
     @SubscribeEvent
     public static void onServerStop(ServerStoppedEvent event) { serverCache.clear(); }
-    @SubscribeEvent
-    public static void onClientDisconnect(ClientPlayerNetworkEvent.LoggingOut event) { clientCache.clear(); }
 
 }
