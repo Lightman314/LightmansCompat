@@ -4,7 +4,6 @@ import io.github.lightman314.lightmanscompat.LCompat;
 import io.github.lightman314.lightmanscurrency.api.misc.player.PlayerReference;
 import io.github.lightman314.lightmanscurrency.api.traders.TraderAPI;
 import io.github.lightman314.lightmanscurrency.api.traders.TraderData;
-import net.minecraftforge.client.event.ClientPlayerNetworkEvent;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.server.ServerStoppedEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
@@ -83,10 +82,10 @@ public class ClaimGroupData {
         return count;
     }
 
+    public static void clearClientCache() { clientCache.clear(); }
     //Stop events to clear the cache's when relevant
     @SubscribeEvent
     public static void onServerStop(ServerStoppedEvent event) { serverCache.clear(); }
-    @SubscribeEvent
-    public static void onClientDisconnect(ClientPlayerNetworkEvent.LoggingOut event) { clientCache.clear(); }
+
 
 }
