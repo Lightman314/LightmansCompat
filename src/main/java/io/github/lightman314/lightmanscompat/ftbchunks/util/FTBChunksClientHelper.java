@@ -4,7 +4,6 @@ import dev.ftb.mods.ftblibrary.math.ChunkDimPos;
 import dev.ftb.mods.ftbteams.api.FTBTeamsAPI;
 import dev.ftb.mods.ftbteams.api.Team;
 import dev.ftb.mods.ftbteams.api.client.ClientTeamManager;
-import io.github.lightman314.lightmanscompat.ftbchunks.FTBChunksNode;
 import io.github.lightman314.lightmanscompat.ftbchunks.packets.CRequestClaimData;
 import io.github.lightman314.lightmanscompat.ftbchunks.packets.SClaimDataReply;
 import io.github.lightman314.lightmanscurrency.api.misc.player.PlayerReference;
