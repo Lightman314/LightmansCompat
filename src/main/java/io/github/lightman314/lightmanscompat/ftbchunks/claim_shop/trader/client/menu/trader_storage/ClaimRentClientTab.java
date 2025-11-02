@@ -4,15 +4,15 @@ import io.github.lightman314.lightmanscompat.ftbchunks.FTBChunksText;
 import io.github.lightman314.lightmanscompat.ftbchunks.claim_shop.trader.ClaimShopData;
 import io.github.lightman314.lightmanscompat.ftbchunks.claim_shop.trader.menu.trader_storage.ClaimRentTab;
 import io.github.lightman314.lightmanscurrency.api.misc.client.rendering.EasyGuiGraphics;
+import io.github.lightman314.lightmanscurrency.api.misc.client.sprites.SpriteUtil;
+import io.github.lightman314.lightmanscurrency.api.misc.icons.IconData;
+import io.github.lightman314.lightmanscurrency.api.misc.icons.IconUtil;
 import io.github.lightman314.lightmanscurrency.api.traders.menu.storage.TraderStorageClientTab;
 import io.github.lightman314.lightmanscurrency.client.gui.widget.TimeInputWidget;
 import io.github.lightman314.lightmanscurrency.client.gui.widget.button.PlainButton;
 import io.github.lightman314.lightmanscurrency.client.gui.widget.easy.EasyAddonHelper;
-import io.github.lightman314.lightmanscurrency.client.util.IconAndButtonUtil;
 import io.github.lightman314.lightmanscurrency.client.util.ScreenArea;
 import io.github.lightman314.lightmanscurrency.client.util.TextRenderUtil;
-import io.github.lightman314.lightmanscurrency.common.util.IconData;
-import io.github.lightman314.lightmanscurrency.common.util.IconUtil;
 import io.github.lightman314.lightmanscurrency.util.TimeUtil;
 import net.minecraft.MethodsReturnNonnullByDefault;
 import net.minecraft.client.gui.screens.Screen;
@@ -33,13 +33,13 @@ public class ClaimRentClientTab extends TraderStorageClientTab<ClaimRentTab> {
         //+/- buttons for Early Payment limits
         this.addChild(PlainButton.builder()
                 .position(screenArea.pos.offset(30,20))
-                .sprite(IconAndButtonUtil.SPRITE_PLUS)
+                .sprite(SpriteUtil.BUTTON_SIGN_PLUS)
                 .pressAction(() -> this.commonTab.SetMaxRentPayments(Math.min(99,this.getMaxRentPayments() + this.getDeltaValue())))
                 .addon(EasyAddonHelper.activeCheck(() -> this.getMaxRentPayments() < 99))
                 .build());
         this.addChild(PlainButton.builder()
                 .position(screenArea.pos.offset(30,30))
-                .sprite(IconAndButtonUtil.SPRITE_MINUS)
+                .sprite(SpriteUtil.BUTTON_SIGN_MINUS)
                 .pressAction(() -> this.commonTab.SetMaxRentPayments(Math.max(1,this.getMaxRentPayments() - this.getDeltaValue())))
                 .addon(EasyAddonHelper.activeCheck(() -> this.getMaxRentPayments() > 1))
                 .build());

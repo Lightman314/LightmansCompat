@@ -24,6 +24,8 @@ import io.github.lightman314.lightmanscompat.ftbchunks.core.FTBChunksBlocks;
 import io.github.lightman314.lightmanscompat.ftbchunks.util.FTBChunksHelper;
 import io.github.lightman314.lightmanscompat.ftbchunks.util.FTBTeamHelper;
 import io.github.lightman314.lightmanscurrency.api.misc.IEasyTickable;
+import io.github.lightman314.lightmanscurrency.api.misc.icons.IconData;
+import io.github.lightman314.lightmanscurrency.api.misc.icons.ItemIcon;
 import io.github.lightman314.lightmanscurrency.api.misc.player.PlayerReference;
 import io.github.lightman314.lightmanscurrency.api.misc.world.WorldPosition;
 import io.github.lightman314.lightmanscurrency.api.money.value.MoneyValue;
@@ -40,7 +42,6 @@ import io.github.lightman314.lightmanscurrency.common.menus.providers.EasyMenuPr
 import io.github.lightman314.lightmanscurrency.common.menus.validation.MenuValidator;
 import io.github.lightman314.lightmanscurrency.common.player.LCAdminMode;
 import io.github.lightman314.lightmanscurrency.common.traders.permissions.Permissions;
-import io.github.lightman314.lightmanscurrency.common.util.IconData;
 import io.github.lightman314.lightmanscurrency.util.MathUtil;
 import io.github.lightman314.lightmanscurrency.util.TimeUtil;
 import io.github.lightman314.lightmanscurrency.util.VersionUtil;
@@ -102,7 +103,7 @@ public class ClaimShopData extends TraderData implements IEasyTickable, IGroupab
     }
 
     @Override
-    public IconData getIcon() { return IconData.of(FTBChunksBlocks.CLAIM_SHOP); }
+    public IconData getIcon() { return ItemIcon.ofItem(FTBChunksBlocks.CLAIM_SHOP); }
 
     @Override
     protected boolean allowAdditionalUpgradeType(UpgradeType upgradeType) { return false; }
@@ -348,7 +349,7 @@ public class ClaimShopData extends TraderData implements IEasyTickable, IGroupab
 
     public static boolean isChunkLocked(ResourceKey<Level> level, ChunkPos pos)
     {
-        return TraderAPI.API.GetAllTraders(false).stream().anyMatch(t -> {
+        return TraderAPI.getApi().GetAllTraders(false).stream().anyMatch(t -> {
             if(t instanceof ClaimShopData shop)
             {
                 return shop.getLockedClaims().stream().anyMatch(pair ->

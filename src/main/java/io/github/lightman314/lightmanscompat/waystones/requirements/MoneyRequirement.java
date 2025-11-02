@@ -23,19 +23,19 @@ public record MoneyRequirement(MoneyValue price) implements WarpRequirement {
 
     @Override
     public boolean canAfford(Player player) {
-        IMoneyHandler handler = MoneyAPI.API.GetPlayersMoneyHandler(player);
+        IMoneyHandler handler = MoneyAPI.getApi().GetPlayersMoneyHandler(player);
         return handler.getStoredMoney().containsValue(this.price);
     }
 
     @Override
     public void consume(Player player) {
-        IMoneyHandler handler = MoneyAPI.API.GetPlayersMoneyHandler(player);
+        IMoneyHandler handler = MoneyAPI.getApi().GetPlayersMoneyHandler(player);
         handler.extractMoney(this.price, false);
     }
 
     @Override
     public void rollback(Player player) {
-        IMoneyHandler handler = MoneyAPI.API.GetPlayersMoneyHandler(player);
+        IMoneyHandler handler = MoneyAPI.getApi().GetPlayersMoneyHandler(player);
         handler.insertMoney(this.price, false);
     }
 

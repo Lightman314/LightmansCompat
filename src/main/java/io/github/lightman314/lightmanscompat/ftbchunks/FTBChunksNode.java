@@ -64,13 +64,13 @@ public class FTBChunksNode {
         LightmansCurrency.safeEnqueueWork(event,"Error during FTBChunks Compat common setup",() -> {
 
             //Register Traders
-            TraderAPI.API.RegisterTrader(ClaimShopData.TYPE);
+            TraderAPI.getApi().RegisterTrader(ClaimShopData.TYPE);
 
             //Register Notifications
-            NotificationAPI.API.RegisterNotification(LandPurchaseNotification.TYPE);
-            NotificationAPI.API.RegisterNotification(RentPaymentNotification.TYPE);
-            NotificationAPI.API.RegisterNotification(RentDueNotification.TYPE);
-            NotificationAPI.API.RegisterNotification(RentExpiredNotification.TYPE);
+            NotificationAPI.getApi().RegisterNotification(LandPurchaseNotification.TYPE);
+            NotificationAPI.getApi().RegisterNotification(RentPaymentNotification.TYPE);
+            NotificationAPI.getApi().RegisterNotification(RentDueNotification.TYPE);
+            NotificationAPI.getApi().RegisterNotification(RentExpiredNotification.TYPE);
 
         });
     }

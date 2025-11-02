@@ -13,7 +13,7 @@ import io.github.lightman314.lightmanscurrency.util.VersionUtil;
 import net.minecraft.MethodsReturnNonnullByDefault;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.nbt.CompoundTag;
-import net.minecraft.network.chat.MutableComponent;
+import net.minecraft.network.chat.Component;
 
 import javax.annotation.ParametersAreNonnullByDefault;
 import java.util.function.Supplier;
@@ -40,7 +40,7 @@ public class LandPurchaseNotification extends SingleLineTaxableNotification {
     public static Supplier<Notification> of(PlayerReference player, MoneyValue price, MoneyValue taxesPaid, TraderCategory traderCategory) { return () -> new LandPurchaseNotification(player,price,taxesPaid,traderCategory); }
 
     @Override
-    protected MutableComponent getNormalMessage() {
+    protected Component getNormalMessage() {
         return FTBChunksText.NOTIFICATION_LAND_PURCHASE.get(this.player.getName(this.isClient()),this.price);
     }
 

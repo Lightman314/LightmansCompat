@@ -15,7 +15,6 @@ import net.minecraft.world.inventory.MenuType;
 import net.minecraft.world.inventory.Slot;
 import net.minecraft.world.item.ItemStack;
 
-import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import javax.annotation.ParametersAreNonnullByDefault;
 
@@ -27,7 +26,7 @@ public class ClaimShopMenu extends EasyTabbedMenu<ClaimShopMenu,ClaimShopTab> im
     public long getTraderID() { return this.traderID; }
     @Nullable
     public ClaimShopData getTrader() {
-        if(TraderAPI.API.GetTrader(this,this.traderID) instanceof ClaimShopData shop)
+        if(TraderAPI.getApi().GetTrader(this,this.traderID) instanceof ClaimShopData shop)
             return shop;
         return null;
     }
@@ -77,8 +76,7 @@ public class ClaimShopMenu extends EasyTabbedMenu<ClaimShopMenu,ClaimShopTab> im
         this.clearContainer(this.player, container);
     }
 
-    @Nonnull
-    public ItemStack quickMoveStack(@Nonnull Player playerEntity, int index) {
+    public ItemStack quickMoveStack(Player playerEntity, int index) {
         ItemStack clickedStack = ItemStack.EMPTY;
         Slot slot = this.slots.get(index);
         if (slot.hasItem()) {

@@ -15,7 +15,7 @@ import io.github.lightman314.lightmanscurrency.util.VersionUtil;
 import net.minecraft.MethodsReturnNonnullByDefault;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.nbt.CompoundTag;
-import net.minecraft.network.chat.MutableComponent;
+import net.minecraft.network.chat.Component;
 
 import javax.annotation.ParametersAreNonnullByDefault;
 import java.util.List;
@@ -45,7 +45,7 @@ public class RentPaymentNotification extends TaxableNotification {
     public static Supplier<Notification> of(PlayerReference player, MoneyValue price, MoneyValue taxesPaid, long timeRemaining, TraderCategory category) { return () -> new RentPaymentNotification(player,price,taxesPaid,timeRemaining,category); }
 
     @Override
-    protected List<MutableComponent> getNormalMessageLines() {
+    protected List<Component> getNormalMessageLines() {
         String timeRemainingText = new TimeUtil.TimeData(this.timeRemaining).getString();
         return Lists.newArrayList(
                 FTBChunksText.NOTIFICATION_RENT_PAYMENT_1.get(this.player.getName(this.isClient()),this.price,timeRemainingText),

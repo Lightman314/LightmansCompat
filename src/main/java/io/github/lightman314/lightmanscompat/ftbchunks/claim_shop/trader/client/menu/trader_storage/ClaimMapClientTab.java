@@ -7,23 +7,27 @@ import io.github.lightman314.lightmanscompat.api.client.widgets.map.ChunkFrame;
 import io.github.lightman314.lightmanscompat.api.client.widgets.map.MapRegionWidget;
 import io.github.lightman314.lightmanscompat.ftbchunks.util.FTBChunksHelper;
 import io.github.lightman314.lightmanscurrency.api.misc.client.rendering.EasyGuiGraphics;
+import io.github.lightman314.lightmanscurrency.api.misc.icons.IconData;
+import io.github.lightman314.lightmanscurrency.api.misc.icons.IconUtil;
+import io.github.lightman314.lightmanscurrency.api.misc.icons.ItemIcon;
 import io.github.lightman314.lightmanscurrency.api.traders.menu.storage.TraderStorageClientTab;
 import io.github.lightman314.lightmanscurrency.client.gui.widget.button.icon.IconButton;
 import io.github.lightman314.lightmanscurrency.client.gui.widget.easy.EasyAddonHelper;
 import io.github.lightman314.lightmanscurrency.client.util.ScreenArea;
 import io.github.lightman314.lightmanscurrency.client.util.TextRenderUtil;
-import io.github.lightman314.lightmanscurrency.common.util.IconData;
-import io.github.lightman314.lightmanscurrency.common.util.IconUtil;
+import net.minecraft.MethodsReturnNonnullByDefault;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.ChunkPos;
 import net.minecraft.world.level.Level;
 
-import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
+import javax.annotation.ParametersAreNonnullByDefault;
 import java.util.UUID;
 
+@MethodsReturnNonnullByDefault
+@ParametersAreNonnullByDefault
 public class ClaimMapClientTab extends TraderStorageClientTab<ClaimMapTab> {
 
     public ClaimMapClientTab(Object screen, ClaimMapTab commonTab) { super(screen, commonTab); }
@@ -60,7 +64,7 @@ public class ClaimMapClientTab extends TraderStorageClientTab<ClaimMapTab> {
     }
 
     @Override
-    public void renderBG(@Nonnull EasyGuiGraphics gui) {
+    public void renderBG(EasyGuiGraphics gui) {
 
         //Render map label
         TextRenderUtil.drawCenteredText(gui,FTBChunksText.GUI_CLAIM_SHOP_MAP_LABEL.get(),this.screen.getXSize() / 2,4,0x404040);
@@ -144,9 +148,8 @@ public class ClaimMapClientTab extends TraderStorageClientTab<ClaimMapTab> {
         return false;
     }
 
-    @Nonnull
     @Override
-    public IconData getIcon() { return IconData.of(Items.FILLED_MAP); }
+    public IconData getIcon() { return ItemIcon.ofItem(Items.FILLED_MAP); }
 
     @Nullable
     @Override

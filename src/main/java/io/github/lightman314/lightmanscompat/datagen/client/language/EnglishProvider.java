@@ -11,7 +11,7 @@ public class EnglishProvider extends TranslationProvider {
     public EnglishProvider(PackOutput output) { super(output, LCompat.MODID,"en_us"); }
 
     @Override
-    protected void addTranslations() {
+    protected void createTranslations() {
 
         /// Waystones
         //Money Cost tooltip

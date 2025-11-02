@@ -2,9 +2,11 @@ package io.github.lightman314.lightmanscompat;
 
 import io.github.lightman314.lightmanscompat.core.LCompatRegistries;
 import io.github.lightman314.lightmanscompat.ftbchunks.FTBChunksNode;
+import io.github.lightman314.lightmanscompat.proxy.*;
 import io.github.lightman314.lightmanscompat.waystones.WaystonesNode;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.bus.api.IEventBus;
+import net.neoforged.fml.ModContainer;
 import net.neoforged.fml.ModList;
 import net.neoforged.fml.common.Mod;
 import org.apache.logging.log4j.LogManager;
@@ -17,8 +19,12 @@ public class LCompat {
 
     public static final Logger LOGGER = LogManager.getLogger();
 
-    public LCompat(IEventBus bus, Dist side)
+    private static CommonProxy proxy;
+    public static CommonProxy getProxy() { return proxy; }
+
+    public LCompat(ModContainer container, IEventBus bus, Dist side)
     {
+        proxy = side == Dist.CLIENT ? new ClientProxy() : new CommonProxy();
         LCompatRegistries.init(bus);
         //Load the node config
         NodeConfig.INSTANCE.reload();
@@ -28,6 +34,8 @@ public class LCompat {
         //Initialize the FTB Chunks node
         if(ModList.get().isLoaded("ftbchunks") && NodeConfig.INSTANCE.ftbchunksNode.get())
             FTBChunksNode.setup(bus,side.isClient());
+        proxy.init(container,bus);
+
     }
 
 }

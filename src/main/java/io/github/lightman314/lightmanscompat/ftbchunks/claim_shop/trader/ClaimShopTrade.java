@@ -21,7 +21,6 @@ import net.minecraft.world.item.ItemStack;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
 
-import javax.annotation.Nonnull;
 import javax.annotation.ParametersAreNonnullByDefault;
 import java.util.List;
 
@@ -32,7 +31,6 @@ public class ClaimShopTrade extends TradeData {
     public final ClaimShopData trader;
     public ClaimShopTrade(ClaimShopData trader) { super(false); this.trader = trader;}
 
-    @Nonnull
     @Override
     public MoneyValue getCost() { return this.trader.getPrice(); }
 
@@ -77,22 +75,22 @@ public class ClaimShopTrade extends TradeData {
     @Override
     public TradeDirection getTradeDirection() { return TradeDirection.SALE; }
     @Override
-    public int getStock(@Nonnull TradeContext tradeContext) { return this.trader.getTradeStock(0); }
+    public int getStock(TradeContext tradeContext) { return this.trader.getTradeStock(0); }
     @Override
     public TradeComparisonResult compare(TradeData tradeData) { return new TradeComparisonResult(); }
     @Override
     public boolean AcceptableDifferences(TradeComparisonResult tradeComparisonResult) { return false; }
     @Override
     public List<Component> GetDifferenceWarnings(TradeComparisonResult tradeComparisonResult) { return List.of(); }
-    @Nonnull
+    
     @Override
     @OnlyIn(Dist.CLIENT)
     public TradeRenderManager<?> getButtonRenderer() { return new ClaimShopTradeButtonRenderer(this); }
     @Override
-    public void OnInputDisplayInteraction(@Nonnull BasicTradeEditTab basicTradeEditTab, int i, @Nonnull TradeInteractionData tradeInteractionData, @Nonnull ItemStack itemStack) { }
+    public void OnInputDisplayInteraction(BasicTradeEditTab basicTradeEditTab, int i, TradeInteractionData tradeInteractionData, ItemStack itemStack) { }
     @Override
-    public void OnOutputDisplayInteraction(@Nonnull BasicTradeEditTab basicTradeEditTab, int i, @Nonnull TradeInteractionData tradeInteractionData, @Nonnull ItemStack itemStack) { }
+    public void OnOutputDisplayInteraction(BasicTradeEditTab basicTradeEditTab, int i, TradeInteractionData tradeInteractionData, ItemStack itemStack) { }
     @Override
-    public void OnInteraction(@Nonnull BasicTradeEditTab basicTradeEditTab, @Nonnull TradeInteractionData tradeInteractionData, @Nonnull ItemStack itemStack) { }
+    public void OnInteraction(BasicTradeEditTab basicTradeEditTab, TradeInteractionData tradeInteractionData, ItemStack itemStack) { }
 
 }

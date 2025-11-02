@@ -63,7 +63,7 @@ public class FTBTeamHelper {
         if(team == null)
             return;
         for(UUID member : team.getMembers())
-            NotificationAPI.API.PushPlayerNotification(member,source.get());
+            NotificationAPI.getApi().PushPlayerNotification(member,source.get());
     }
 
 }
