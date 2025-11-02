@@ -5,13 +5,14 @@ import io.github.lightman314.lightmanscompat.ftbchunks.claim_shop.trader.ClaimSh
 import io.github.lightman314.lightmanscompat.ftbchunks.claim_shop.trader.client.menu.shop.ClaimShopClientTab;
 import io.github.lightman314.lightmanscompat.ftbchunks.claim_shop.trader.menu.shop.tabs.CustomerSettingsTab;
 import io.github.lightman314.lightmanscurrency.api.misc.client.rendering.EasyGuiGraphics;
+import io.github.lightman314.lightmanscurrency.api.misc.icons.IconData;
+import io.github.lightman314.lightmanscurrency.api.misc.icons.ItemIcon;
 import io.github.lightman314.lightmanscurrency.api.misc.player.PlayerReference;
 import io.github.lightman314.lightmanscurrency.client.gui.widget.TimeInputWidget;
 import io.github.lightman314.lightmanscurrency.client.gui.widget.easy.EasyAddonHelper;
 import io.github.lightman314.lightmanscurrency.client.gui.widget.easy.EasyTextButton;
 import io.github.lightman314.lightmanscurrency.client.util.ScreenArea;
 import io.github.lightman314.lightmanscurrency.client.util.TextRenderUtil;
-import io.github.lightman314.lightmanscurrency.common.util.IconData;
 import io.github.lightman314.lightmanscurrency.util.TimeUtil;
 import net.minecraft.MethodsReturnNonnullByDefault;
 import net.minecraft.network.chat.Component;
@@ -99,7 +100,7 @@ public class CustomerSettingsClientTab extends ClaimShopClientTab<CustomerSettin
     }
 
     @Override
-    public IconData getIcon() { return IconData.of(Items.PAPER); }
+    public IconData getIcon() { return ItemIcon.ofItem(Items.PAPER); }
 
     @Override
     public Component getTooltip() { return FTBChunksText.TOOLTIP_CLAIM_SHOP_CUSTOMER_SETTINGS.get(); }

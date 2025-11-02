@@ -9,6 +9,8 @@ import io.github.lightman314.lightmanscompat.ftbchunks.util.FTBTeamHelper;
 import io.github.lightman314.lightmanscompat.util.client.TooltipAddon;
 import io.github.lightman314.lightmanscurrency.api.misc.EasyText;
 import io.github.lightman314.lightmanscurrency.api.misc.client.rendering.EasyGuiGraphics;
+import io.github.lightman314.lightmanscurrency.api.misc.icons.IconData;
+import io.github.lightman314.lightmanscurrency.api.misc.icons.IconUtil;
 import io.github.lightman314.lightmanscurrency.api.misc.player.PlayerReference;
 import io.github.lightman314.lightmanscurrency.api.money.value.MoneyValue;
 import io.github.lightman314.lightmanscurrency.api.traders.TradeContext;
@@ -18,23 +20,24 @@ import io.github.lightman314.lightmanscurrency.client.gui.widget.easy.EasyAddonH
 import io.github.lightman314.lightmanscurrency.client.gui.widget.easy.EasyTextButton;
 import io.github.lightman314.lightmanscurrency.client.util.ScreenArea;
 import io.github.lightman314.lightmanscurrency.client.util.ScreenPosition;
-import io.github.lightman314.lightmanscurrency.common.util.IconData;
-import io.github.lightman314.lightmanscurrency.common.util.IconUtil;
 import io.github.lightman314.lightmanscurrency.util.TimeUtil;
+import net.minecraft.MethodsReturnNonnullByDefault;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.inventory.Slot;
 import net.minecraft.world.level.ChunkPos;
 
-import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
+import javax.annotation.ParametersAreNonnullByDefault;
 import java.util.ArrayList;
 import java.util.List;
 
+@MethodsReturnNonnullByDefault
+@ParametersAreNonnullByDefault
 public class CustomerClientTab extends ClaimShopClientTab<CustomerTab> {
 
     private final ScreenPosition INFO_WIDGET_POSITION = ScreenPosition.of(175, 160);
 
-    public CustomerClientTab(@Nonnull Object screen, @Nonnull CustomerTab commonTab) { super(screen, commonTab); }
+    public CustomerClientTab(Object screen, CustomerTab commonTab) { super(screen, commonTab); }
 
     @Override
     protected void initialize(ScreenArea screenArea, boolean firstOpen) {
@@ -63,7 +66,7 @@ public class CustomerClientTab extends ClaimShopClientTab<CustomerTab> {
     }
 
     @Override
-    public void renderBG(@Nonnull EasyGuiGraphics gui) {
+    public void renderBG(EasyGuiGraphics gui) {
 
         //Render Money Info Widget
         gui.blit(TraderScreen.GUI_TEXTURE, this.INFO_WIDGET_POSITION, TraderScreen.WIDTH + 38, 0, 10, 10);
@@ -83,7 +86,7 @@ public class CustomerClientTab extends ClaimShopClientTab<CustomerTab> {
     }
 
     @Override
-    public void renderAfterWidgets(@Nonnull EasyGuiGraphics gui) {
+    public void renderAfterWidgets(EasyGuiGraphics gui) {
         if (this.INFO_WIDGET_POSITION.offset(this.screen).isMouseInArea(gui.mousePos, 10, 10)) {
             gui.renderComponentTooltip(this.commonTab.getContext(this.menu.getTrader()).getAvailableFundsDescription());
         }
@@ -150,9 +153,8 @@ public class CustomerClientTab extends ClaimShopClientTab<CustomerTab> {
         return context.hasFunds(price);
     }
 
-    @Nonnull
     @Override
-    public IconData getIcon() { return IconData.of(IconUtil.ICON_TRADER); }
+    public IconData getIcon() { return IconUtil.ICON_TRADER; }
 
     @Nullable
     @Override

@@ -3,17 +3,20 @@ package io.github.lightman314.lightmanscompat.ftbchunks.packets;
 import io.github.lightman314.lightmanscompat.ftbchunks.util.FTBChunksClientHelper;
 import io.github.lightman314.lightmanscompat.network.packets.ServerToClientPacket;
 import io.github.lightman314.lightmanscurrency.util.VersionUtil;
+import net.minecraft.MethodsReturnNonnullByDefault;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.resources.ResourceKey;
-import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.ChunkPos;
 import net.minecraft.world.level.Level;
 
-import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
+import javax.annotation.ParametersAreNonnullByDefault;
 import java.util.UUID;
 
+@MethodsReturnNonnullByDefault
+@ParametersAreNonnullByDefault
 public class SClaimDataReply extends ServerToClientPacket {
 
     public static final Handler<SClaimDataReply> HANDLER = new H();
@@ -42,9 +45,8 @@ public class SClaimDataReply extends ServerToClientPacket {
 
         protected H() {  }
 
-        @Nonnull
         @Override
-        public SClaimDataReply decode(@Nonnull FriendlyByteBuf buffer) {
+        public SClaimDataReply decode(FriendlyByteBuf buffer) {
             ResourceKey<Level> level = ResourceKey.create(Registries.DIMENSION, VersionUtil.parseResource(buffer.readUtf()));
             ChunkPos chunk = new ChunkPos(buffer.readLong());
             UUID teamID = null;
@@ -54,7 +56,7 @@ public class SClaimDataReply extends ServerToClientPacket {
         }
 
         @Override
-        protected void handle(@Nonnull SClaimDataReply message, @Nullable ServerPlayer player) {
+        protected void handle(SClaimDataReply message, Player player) {
             FTBChunksClientHelper.handlePacket(message);
         }
 

@@ -15,6 +15,7 @@ public final class WaystonesConfig extends SyncedConfigFile {
 
     public static void init() {
         CONFIG.confirmSetup();
+        LCompat.getProxy().registerConfigFile(CONFIG);
     }
 
     public static final WaystonesConfig CONFIG = new WaystonesConfig();
@@ -82,10 +83,10 @@ public final class WaystonesConfig extends SyncedConfigFile {
         builder.comment("The warp cost scale when warping via the inventory button")
                 .add("inventoryButtonCostScale",this.inventoryButtonCostScale);
 
-        builder.comment("The minimum warp cost regardless of distance, etc. (may be subceeded by multipliers defined below)")
+        builder.comment("The minimum warp cost regardless of distance, etc. (may be subceeded by multipliers defined above)")
                 .add("minWarpCost",this.minWarpCost);
 
-        builder.comment("The maximum warp cost regardless of distance, etc. (may be exceeded by multipliers defined below)")
+        builder.comment("The maximum warp cost regardless of distance, etc. (may be exceeded by multipliers defined above)")
                 .add("maxWarpCost",this.maxWarpCost);
     }
 

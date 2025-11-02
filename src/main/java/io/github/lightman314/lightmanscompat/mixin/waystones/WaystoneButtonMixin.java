@@ -67,7 +67,7 @@ public class WaystoneButtonMixin {
         //Don't bother checking the players money if already inactive, player is creative, or if the price is empty
         if(this.lightmansCompat$price.isEmpty() || player.getAbilities().instabuild || !this.lightmansCompat$self().active)
             return;
-        IMoneyHandler moneyHandler = MoneyAPI.API.GetPlayersMoneyHandler(player);
+        IMoneyHandler moneyHandler = MoneyAPI.getApi().GetPlayersMoneyHandler(player);
         //Set inactive if we cannot afford the warp
         if(!moneyHandler.getStoredMoney().containsValue(this.lightmansCompat$price))
             self.active = false;

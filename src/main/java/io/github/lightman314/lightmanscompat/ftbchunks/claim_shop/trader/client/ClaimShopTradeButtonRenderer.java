@@ -7,10 +7,14 @@ import io.github.lightman314.lightmanscurrency.client.gui.widget.button.trade.Al
 import io.github.lightman314.lightmanscurrency.client.gui.widget.button.trade.DisplayData;
 import io.github.lightman314.lightmanscurrency.client.gui.widget.button.trade.DisplayEntry;
 import io.github.lightman314.lightmanscurrency.client.util.ScreenPosition;
-import net.minecraftforge.common.util.LazyOptional;
+import net.minecraft.MethodsReturnNonnullByDefault;
 
+import javax.annotation.ParametersAreNonnullByDefault;
 import java.util.List;
+import java.util.Optional;
 
+@MethodsReturnNonnullByDefault
+@ParametersAreNonnullByDefault
 public class ClaimShopTradeButtonRenderer extends TradeRenderManager<ClaimShopTrade> {
 
     public ClaimShopTradeButtonRenderer(ClaimShopTrade trade) { super(trade); }
@@ -21,8 +25,8 @@ public class ClaimShopTradeButtonRenderer extends TradeRenderManager<ClaimShopTr
     }
 
     @Override
-    public LazyOptional<ScreenPosition> arrowPosition(TradeContext context) {
-        return LazyOptional.empty();
+    public Optional<ScreenPosition> arrowPosition(TradeContext context) {
+        return Optional.empty();
     }
 
     @Override

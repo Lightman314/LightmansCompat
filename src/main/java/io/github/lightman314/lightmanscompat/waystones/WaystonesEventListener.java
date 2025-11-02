@@ -32,7 +32,7 @@ public final class WaystonesEventListener {
             MoneyValue price = WaystonesNode.calculatePrice(player,target,mode,leashed);
             if(price.isEmpty())
                 return;
-            IMoneyHandler moneyHandler = MoneyAPI.API.GetPlayersMoneyHandler(player);
+            IMoneyHandler moneyHandler = MoneyAPI.getApi().GetPlayersMoneyHandler(player);
             if(!moneyHandler.getStoredMoney().containsValue(price))
                 event.setCanceled(true);
             else
@@ -56,7 +56,7 @@ public final class WaystonesEventListener {
             MoneyValue price = WaystonesNode.calculatePrice(event.getContext().getTargetWaystone(),event.getContext().getWarpMode(),event.getContext().getLeashedEntities().size(),distanceData);
             if(price.isEmpty())
                 return;
-            IMoneyHandler moneyHandler = MoneyAPI.API.GetPlayersMoneyHandler(player);
+            IMoneyHandler moneyHandler = MoneyAPI.getApi().GetPlayersMoneyHandler(player);
             moneyHandler.extractMoney(price,false);
         }
     }

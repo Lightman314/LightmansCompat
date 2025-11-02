@@ -11,7 +11,7 @@ import io.github.lightman314.lightmanscurrency.util.TimeUtil;
 import io.github.lightman314.lightmanscurrency.util.VersionUtil;
 import net.minecraft.MethodsReturnNonnullByDefault;
 import net.minecraft.nbt.CompoundTag;
-import net.minecraft.network.chat.MutableComponent;
+import net.minecraft.network.chat.Component;
 
 import javax.annotation.ParametersAreNonnullByDefault;
 import java.util.function.Supplier;
@@ -34,7 +34,7 @@ public class RentDueNotification extends SingleLineNotification {
     public static Supplier<Notification> of(long timeRemaining, TraderCategory trader) { return () -> new RentDueNotification(timeRemaining,trader); }
 
     @Override
-    protected MutableComponent getMessage() { return FTBChunksText.NOTIFICATION_RENT_DUE.get(new TimeUtil.TimeData(this.timeRemaining).getString()); }
+    protected Component getMessage() { return FTBChunksText.NOTIFICATION_RENT_DUE.get(new TimeUtil.TimeData(this.timeRemaining).getString()); }
 
     @Override
     protected NotificationType<?> getType() { return TYPE; }

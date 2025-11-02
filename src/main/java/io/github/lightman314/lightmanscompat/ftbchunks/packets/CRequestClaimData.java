@@ -3,18 +3,20 @@ package io.github.lightman314.lightmanscompat.ftbchunks.packets;
 import io.github.lightman314.lightmanscompat.ftbchunks.util.FTBChunksHelper;
 import io.github.lightman314.lightmanscompat.network.packets.ClientToServerPacket;
 import io.github.lightman314.lightmanscurrency.util.VersionUtil;
+import net.minecraft.MethodsReturnNonnullByDefault;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.resources.ResourceKey;
-import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.ChunkPos;
 import net.minecraft.world.level.Level;
 
-import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
+import javax.annotation.ParametersAreNonnullByDefault;
 import java.util.Objects;
 import java.util.UUID;
 
+@MethodsReturnNonnullByDefault
+@ParametersAreNonnullByDefault
 public class CRequestClaimData extends ClientToServerPacket {
 
     public static final Handler<CRequestClaimData> HANDLER = new H();
@@ -27,7 +29,7 @@ public class CRequestClaimData extends ClientToServerPacket {
     }
 
     @Override
-    public void encode(@Nonnull FriendlyByteBuf buffer) {
+    public void encode(FriendlyByteBuf buffer) {
         buffer.writeUtf(this.level.location().toString());
         buffer.writeLong(this.pos.toLong());
     }
@@ -36,15 +38,14 @@ public class CRequestClaimData extends ClientToServerPacket {
     {
 
         protected H() { super(); }
-
-        @Nonnull
+        
         @Override
-        public CRequestClaimData decode(@Nonnull FriendlyByteBuf buffer) {
+        public CRequestClaimData decode(FriendlyByteBuf buffer) {
             return new CRequestClaimData(ResourceKey.create(Registries.DIMENSION,VersionUtil.parseResource(buffer.readUtf())),new ChunkPos(buffer.readLong()));
         }
 
         @Override
-        protected void handle(@Nonnull CRequestClaimData message, @Nullable ServerPlayer player) {
+        protected void handle(CRequestClaimData message, Player player) {
             UUID teamId = FTBChunksHelper.getChunkOwnerID(message.level,message.pos,false);
             new SClaimDataReply(message.level,message.pos,teamId).sendTo(Objects.requireNonNull(player));
         }

@@ -4,23 +4,26 @@ import io.github.lightman314.lightmanscompat.ftbchunks.FTBChunksText;
 import io.github.lightman314.lightmanscompat.ftbchunks.claim_shop.trader.ClaimShopData;
 import io.github.lightman314.lightmanscompat.ftbchunks.claim_shop.trader.menu.trader_storage.ClaimTradeEditTab;
 import io.github.lightman314.lightmanscurrency.api.misc.client.rendering.EasyGuiGraphics;
+import io.github.lightman314.lightmanscurrency.api.misc.client.sprites.FixedSizeSprite;
+import io.github.lightman314.lightmanscurrency.api.misc.client.sprites.SpriteUtil;
+import io.github.lightman314.lightmanscurrency.api.misc.icons.IconData;
+import io.github.lightman314.lightmanscurrency.api.misc.icons.IconUtil;
 import io.github.lightman314.lightmanscurrency.api.money.input.MoneyValueWidget;
 import io.github.lightman314.lightmanscurrency.api.money.value.MoneyValue;
 import io.github.lightman314.lightmanscurrency.api.traders.menu.storage.TraderStorageClientTab;
-import io.github.lightman314.lightmanscurrency.client.gui.easy.rendering.Sprite;
 import io.github.lightman314.lightmanscurrency.client.gui.widget.button.PlainButton;
 import io.github.lightman314.lightmanscurrency.client.gui.widget.easy.EasyAddonHelper;
 import io.github.lightman314.lightmanscurrency.client.gui.widget.easy.EasyTextButton;
-import io.github.lightman314.lightmanscurrency.client.util.IconAndButtonUtil;
 import io.github.lightman314.lightmanscurrency.client.util.ScreenArea;
-import io.github.lightman314.lightmanscurrency.common.util.IconData;
-import io.github.lightman314.lightmanscurrency.common.util.IconUtil;
+import net.minecraft.MethodsReturnNonnullByDefault;
 import net.minecraft.network.chat.Component;
 
-import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
+import javax.annotation.ParametersAreNonnullByDefault;
 import java.util.function.Supplier;
 
+@MethodsReturnNonnullByDefault
+@ParametersAreNonnullByDefault
 public class ClaimTradeEditClientTab extends TraderStorageClientTab<ClaimTradeEditTab> {
 
     public ClaimTradeEditClientTab(Object screen, ClaimTradeEditTab commonTab) {
@@ -71,7 +74,7 @@ public class ClaimTradeEditClientTab extends TraderStorageClientTab<ClaimTradeEd
     }
 
     @Override
-    public void renderBG(@Nonnull EasyGuiGraphics gui) {
+    public void renderBG(EasyGuiGraphics gui) {
 
         //Render Active Toggle Text
         gui.drawString(FTBChunksText.GUI_CLAIM_SHOP_ACTIVE.get(),40, 20,0x404040);
@@ -84,25 +87,25 @@ public class ClaimTradeEditClientTab extends TraderStorageClientTab<ClaimTradeEd
 
     }
 
-    private Sprite activeToggleSprite() {
+    private FixedSizeSprite activeToggleSprite() {
         if(!this.commonTab.canEditTrade())
         {
             //Always make gray if not allowed to edit
-            return IconAndButtonUtil.SPRITE_NEUTRAL_TOGGLE(this::isActive).get();
+            return SpriteUtil.createNeutralToggle(this::isActive).get();
         }
         if(this.menu.getTrader() instanceof ClaimShopData shop)
         {
             if(shop.isActive())
-                return IconAndButtonUtil.SPRITE_TOGGLE_ACTIVE;
+                return SpriteUtil.createColoredToggle(() -> true).get();
             if(shop.canBeActivated())
-                return IconAndButtonUtil.SPRITE_TOGGLE_INACTIVE;
+                return SpriteUtil.createColoredToggle(() -> false).get();
         }
         //Make uncolored if the machine cannot be activated at this time
-        return IconAndButtonUtil.SPRITE_NEUTRAL_TOGGLE_DOWN;
+        return SpriteUtil.createNeutralToggle(() -> false).get();
     }
 
-    private Sprite rentToggleSprite() {
-        Supplier<Sprite> source = this.commonTab.canEditRentMode() ? IconAndButtonUtil.SPRITE_TOGGLE(this::isRentMode) : IconAndButtonUtil.SPRITE_NEUTRAL_TOGGLE(this::isRentMode);
+    private FixedSizeSprite rentToggleSprite() {
+        Supplier<FixedSizeSprite> source = this.commonTab.canEditRentMode() ? SpriteUtil.createNeutralToggle(this::isRentMode) : SpriteUtil.createColoredToggle(this::isRentMode);
         return source.get();
     }
 
@@ -120,7 +123,6 @@ public class ClaimTradeEditClientTab extends TraderStorageClientTab<ClaimTradeEd
         return false;
     }
 
-    @Nonnull
     @Override
     public IconData getIcon() { return IconUtil.ICON_TRADELIST; }
 

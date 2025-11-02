@@ -2,6 +2,7 @@ package io.github.lightman314.lightmanscompat.datagen.client.language;
 
 import io.github.lightman314.lightmanscompat.LCompat;
 import io.github.lightman314.lightmanscompat.ftbchunks.FTBChunksText;
+import io.github.lightman314.lightmanscompat.waystones.WaystonesConfig;
 import io.github.lightman314.lightmanscompat.waystones.WaystonesText;
 import io.github.lightman314.lightmanscurrency.datagen.client.language.TranslationProvider;
 import net.minecraft.data.PackOutput;
@@ -11,11 +12,30 @@ public class EnglishProvider extends TranslationProvider {
     public EnglishProvider(PackOutput output) { super(output, LCompat.MODID,"en_us"); }
 
     @Override
-    protected void addTranslations() {
+    protected void createTranslations() {
 
         /// Waystones
         //Money Cost tooltip
         this.translate(WaystonesText.TOOLTIP_WAYSTONE_MONEY_COST,"Warping Costs %s");
+
+        //Waystones Config
+        this.translateConfigName(WaystonesConfig.CONFIG,"Waystones Config");
+        this.translateConfigOption(WaystonesConfig.CONFIG.invertMoneyCost,"Invert Warp Cost","Set to true if the warp cost should be inverted, meaning the shorter the distance, the more expensive",
+                "This will be done by calculating the price normally and subtracting it from the max warp cost defined below");
+        this.translateConfigOption(WaystonesConfig.CONFIG.baseWarpPrice,"Base Warp Cost","The base cost to warp using a Waystone");
+        this.translateConfigOption(WaystonesConfig.CONFIG.distanceScaledPrice,"Distance Scaled Cost","The distance scaled cost to warp using a Waystone");
+        this.translateConfigOption(WaystonesConfig.CONFIG.distancePerScaledPrice,"Distance Per Scaled Cost","The distance per distance scaled cost in meters");
+        this.translateConfigOption(WaystonesConfig.CONFIG.leashedWarpPrice,"Warp Cost Per Leashed","How much is costs per leashed animal traveling with you");
+        this.translateConfigOption(WaystonesConfig.CONFIG.dimensionalWarpPrice,"Cross Dimension Warp Cost","The cost to warp from one dimension to another using a Waystone");
+        this.translateConfigOption(WaystonesConfig.CONFIG.globalCostScale,"Global Waystone Scale","The warp cost scale when warping to a Global Waystone");
+        this.translateConfigOption(WaystonesConfig.CONFIG.warpStonePriceScale,"Warpstone Scale","The warp cost scale when warping using a Warp Stone item");
+        this.translateConfigOption(WaystonesConfig.CONFIG.waystonePriceScale,"Waystone Scale","The warp cost scale when warping from one waystone to another");
+        this.translateConfigOption(WaystonesConfig.CONFIG.sharestonePriceScale,"Sharestone Scale","The warp cost scale when warping from one sharestone to another");
+        this.translateConfigOption(WaystonesConfig.CONFIG.portstonePriceScale,"Portstone Scale","The warp cost scale when warping from a portstone");
+        this.translateConfigOption(WaystonesConfig.CONFIG.warpPlatePriceScale,"Warp Plate Scale","The warp cost scale when warping using a Warp Plate");
+        this.translateConfigOption(WaystonesConfig.CONFIG.inventoryButtonCostScale,"Inventory Button Scale","The warp cost scale when warping via the inventory button");
+        this.translateConfigOption(WaystonesConfig.CONFIG.minWarpCost,"Minumum Warp Cost","The minimum warp cost regardless of distance, etc. (may be subceeded by multipliers defined above)");
+        this.translateConfigOption(WaystonesConfig.CONFIG.maxWarpCost,"Maximum Warp Cost","The maximum warp cost regardless of distance, etc. (may be exceeded by multipliers defined above)");
 
         /// FTB Chunks
         this.translate(FTBChunksText.BLOCK_CLAIM_SHOP,"Claim Shop");

@@ -3,8 +3,10 @@ package io.github.lightman314.lightmanscompat;
 import io.github.lightman314.lightmanscompat.core.LCompatRegistries;
 import io.github.lightman314.lightmanscompat.ftbchunks.FTBChunksNode;
 import io.github.lightman314.lightmanscompat.network.LCompatPacketHandler;
+import io.github.lightman314.lightmanscompat.proxy.*;
 import io.github.lightman314.lightmanscompat.waystones.WaystonesNode;
 import net.minecraftforge.eventbus.api.IEventBus;
+import net.minecraftforge.fml.DistExecutor;
 import net.minecraftforge.fml.ModList;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
@@ -19,6 +21,9 @@ public class LCompat {
     public static final String MODID = "lcompat";
 
     public static final Logger LOGGER = LogManager.getLogger();
+
+    private static final CommonProxy proxy = DistExecutor.safeRunForDist(() -> ClientProxy::new,() -> CommonProxy::new);
+    public static CommonProxy getProxy() { return proxy; }
 
     @SuppressWarnings("removal")
     public LCompat()
@@ -42,6 +47,8 @@ public class LCompat {
             FTBChunksNode.setup(bus,isClient);
 
         bus.addListener(this::commonSetup);
+
+        proxy.init();
 
     }
 

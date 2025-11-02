@@ -72,7 +72,7 @@ public class ClaimGroupData {
         Set<Long> cachedSet = cache.getOrDefault(group,new HashSet<>());
         for(long traderID : cachedSet)
         {
-            TraderData t = TraderAPI.API.GetTrader(isClient,traderID);
+            TraderData t = TraderAPI.getApi().GetTrader(isClient,traderID);
             if(t instanceof IGroupableClaimTrader shop && shop.getClaimGroup().equals(group) && customer.is(shop.getCustomer()))
                 count++;
             else //Remove the non-existent or invalid traders from the cache

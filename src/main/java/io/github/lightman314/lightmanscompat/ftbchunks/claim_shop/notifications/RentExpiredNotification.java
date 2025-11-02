@@ -11,7 +11,7 @@ import io.github.lightman314.lightmanscurrency.common.notifications.categories.T
 import io.github.lightman314.lightmanscurrency.util.VersionUtil;
 import net.minecraft.MethodsReturnNonnullByDefault;
 import net.minecraft.nbt.CompoundTag;
-import net.minecraft.network.chat.MutableComponent;
+import net.minecraft.network.chat.Component;
 
 import javax.annotation.ParametersAreNonnullByDefault;
 import java.util.function.Supplier;
@@ -33,7 +33,7 @@ public class RentExpiredNotification extends SingleLineNotification {
     public static Supplier<Notification> of(PlayerReference renter,TraderCategory trader) { return () -> new RentExpiredNotification(renter,trader); }
 
     @Override
-    protected MutableComponent getMessage() { return FTBChunksText.NOTIFICATION_RENT_EXPIRED.get(); }
+    protected Component getMessage() { return FTBChunksText.NOTIFICATION_RENT_EXPIRED.get(); }
     @Override
     protected NotificationType<?> getType() { return TYPE; }
     @Override
