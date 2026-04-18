@@ -55,7 +55,7 @@ public class ClaimTradeSettings extends TraderSettingsNode<ClaimShopData> {
             Set<ChunkPos> targets = new HashSet<>();
             int index = 0;
             while(nodeAccess.hasLongValue("chunk_" + index))
-                targets.add(removeOffset(new ChunkPos(nodeAccess.getLongValue("chunk_" + index)),center));
+                targets.add(removeOffset(new ChunkPos(nodeAccess.getLongValue("chunk_" + index++)),center));
             this.trader.overrideChunkTargets(targets);
 
             this.trader.setRentMode(nodeAccess.getBooleanValue("rent_mode"));
